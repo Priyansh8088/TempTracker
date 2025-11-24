@@ -1,0 +1,100 @@
+@baseUrl = http://127.0.0.1:8000
+
+### Health Check
+GET {{baseUrl}}/
+
+### Add Temperature & Humidity Reading
+POST {{baseUrl}}/reading
+Content-Type: application/json
+
+{
+  "temperature": 22.5,
+  "humidity": 55
+}
+
+### Add Another Reading (Higher Temperature)
+POST {{baseUrl}}/reading
+Content-Type: application/json
+
+{
+  "temperature": 25.3,
+  "humidity": 48
+}
+
+### Add Multiple Readings for Testing
+POST {{baseUrl}}/reading
+Content-Type: application/json
+
+{
+  "temperature": 20.1,
+  "humidity": 60
+}
+
+### Get All Readings (Last 24 Hours)
+GET {{baseUrl}}/readings?hours=24
+
+### Get Readings (Last 6 Hours)
+GET {{baseUrl}}/readings?hours=6
+
+### Get Readings (Last 1 Hour)
+GET {{baseUrl}}/readings?hours=1
+
+### Get Analysis (Last 24 Hours)
+GET {{baseUrl}}/analysis?hours=24
+
+### Get Analysis (Last 7 Days)
+GET {{baseUrl}}/analysis?hours=168
+
+### Get Analysis (Last 6 Hours)
+GET {{baseUrl}}/analysis?hours=6
+
+### View Interactive Dashboard
+GET {{baseUrl}}/dashboard
+
+### Add Reading with Low Values
+POST {{baseUrl}}/reading
+Content-Type: application/json
+
+{
+  "temperature": 15.2,
+  "humidity": 35
+}
+
+### Add Reading with High Values
+POST {{baseUrl}}/reading
+Content-Type: application/json
+
+{
+  "temperature": 28.9,
+  "humidity": 75
+}
+
+### Add Reading with Extreme Value (Anomaly)
+POST {{baseUrl}}/reading
+Content-Type: application/json
+
+{
+  "temperature": 35.5,
+  "humidity": 90
+}
+
+### Clear All Readings
+DELETE {{baseUrl}}/readings
+
+### Test Invalid Temperature (Out of Range)
+POST {{baseUrl}}/reading
+Content-Type: application/json
+
+{
+  "temperature": 200,
+  "humidity": 50
+}
+
+### Test Invalid Humidity (Out of Range)
+POST {{baseUrl}}/reading
+Content-Type: application/json
+
+{
+  "temperature": 22,
+  "humidity": 150
+}
