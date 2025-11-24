@@ -15,6 +15,6 @@ services:
         description: Firebase configuration
         envVars:
           - key: FIREBASE_SECRET
-            description: Firebase service account JSON (base64 encoded or raw JSON)
+            description: Firebase service account JSON
             isFile: true
             filePath: firebaseSecret.json
