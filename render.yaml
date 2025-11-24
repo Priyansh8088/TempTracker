@@ -3,18 +3,10 @@ services:
     name: climate-monitor-api
     env: python
     plan: free
-    buildCommand: pip install -r req.txt
+    buildCommand: pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHONUNBUFFERED
         value: true
-    healthCheckPath: /
-    healthCheckInterval: 60
-    envVarGroups:
-      - id: firebase_credentials
-        description: Firebase configuration
-        envVars:
-          - key: FIREBASE_SECRET
-            description: Firebase service account JSON
-            isFile: true
-            filePath: firebaseSecret.json
+      - key: FIREBASE_SECRET
+        fromFile: firebaseSecret.json
