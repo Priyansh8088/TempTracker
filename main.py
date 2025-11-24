@@ -1,13 +1,12 @@
+from datetime import datetime, timedelta
+from statistics import mean, stdev
+from typing import List
+
+import firebase_admin
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
-from pydantic import BaseModel
-from datetime import datetime, timedelta
-from typing import List
-import firebase_admin
 from firebase_admin import credentials, db
-from statistics import mean, stdev
-import json
-
+from pydantic import BaseModel
 from starlette.middleware.cors import CORSMiddleware
 
 # Initialize Firebase
@@ -45,6 +44,9 @@ class ReadingResponse(BaseModel):
 async def root():
     return {"message": "Temperature & Humidity Tracking API", "version": "1.0"}
 
+@app.head("/")
+async def root_head():
+    return { "message": "Temperature & Humidity Tracking API", "version": "1.0"}
 
 @app.post("/reading")
 async def add_reading(reading: SensorReading):
